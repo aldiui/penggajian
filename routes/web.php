@@ -34,3 +34,6 @@ Route::resource('/jabatan', 'JabatanController');
 Route::resource('/absensi', 'AbsensiController');
 // master gaji
 Route::resource('/master_gaji', 'Master_GajiController');
+
+Route::resource('/laporan', 'LaporanController');
+Route::post('/generate-pdf', 'LaporanController@generatePDF')->name('generate-pdf');

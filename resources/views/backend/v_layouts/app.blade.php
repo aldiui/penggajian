@@ -106,10 +106,9 @@
                             <span class="nav-label"> Master Gaji</span></a>
                     </li>
                     <li>
-                        <a href="{{ route('master_gaji.index') }}" class="text-white"><i
-                                class="sidebar-item-icon fa fa-angle-left arrow"></i>
+                        <a href="{{ route('laporan.index') }}" class="text-white"><i
+                                class="sidebar-item-icon fa fa-file"></i>
                             <span class="nav-label"> Laporan</span></a>
-                    </li>
                     </li>
                     <li>
                         <a href="{{ route('logout') }}" class="text-white" onclick="event.preventDefault();
