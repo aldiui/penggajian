@@ -46,6 +46,11 @@
 
                 <button class="btn btn-info" type="submit">Generate PDF</button>
             </form>
+
+            <!-- Tampilkan PDF di sini -->
+            @if(isset($pdfUrl))
+            <embed src="{{ $pdfUrl }}" type="application/pdf" width="100%" height="600px" />
+            @endif
         </div>
     </div>
 </div>

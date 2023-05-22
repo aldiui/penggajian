@@ -49,13 +49,13 @@ class LaporanController extends Controller
         $absensi = Absensi::where('bulan', $bulan)
                             ->where('tahun', $tahun)
                             ->get();
-
+    
         $pdf = PDF::loadView('backend.v_laporan.show', [
             'absensi' => $absensi,
             'bulan' => $bulan,
             'tahun' => $tahun,
         ]);
-
+    
         // Set nama file PDF
         $namaFile = 'laporan_gaji_' . $bulan . '_' . $tahun . '.pdf';
         
@@ -67,7 +67,16 @@ class LaporanController extends Controller
         ];
         $pdf->setPaper('A4', 'landscape');
         $pdf->setOptions($options);
-
-        return $pdf->download($namaFile);
+    
+        // Menyimpan konten PDF sebagai string
+        $pdfContent = $pdf->output();
+    
+        return response($pdfContent)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'inline; filename="'.$namaFile.'"')
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', '0');
     }
+    
 }
