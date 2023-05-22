@@ -5,7 +5,7 @@
     <div class="row justify-content-start">
         <div class="col-md-9">
             <div class="card shadow-3 rounded-3">
-                <div class="card-header text-center bg-teal bg-opacity-75 text-white">
+                <div class="card-header text-center bg-danger bg-opacity-75 text-white">
                     <h5 class="mb-0 font-weight-bold">
                         Halaman Beranda
                     </h5>

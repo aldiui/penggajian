@@ -16,7 +16,7 @@
                     <div class="card card-body bg-light">
                         <form id="login-form" action="{{ route('login') }}" method="post">
                             @csrf
-                            <h2 class="login-title text-success font-strong font-weight-bold">Serba Sambal</h2>
+                            <h2 class="login-title text-danger font-strong font-weight-bold">Serba Sambal</h2>
                             <div class="form-group">
                                 <div class="input-group-icon right">
                                     <div class="input-icon"><i class="fa fa-envelope"></i></div>
@@ -32,11 +32,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-success btn-block" type="submit">Login</button>
+                                <button class="btn btn-danger btn-block" type="submit">Login</button>
                             </div>
                         </form>
                         <div class="text-center">
-                            <a href="register" class="text-success">Register New Account</a>
+                            <a href="register" class="text-danger">Register New Account</a>
                         </div>
                     </div>
                 </div>

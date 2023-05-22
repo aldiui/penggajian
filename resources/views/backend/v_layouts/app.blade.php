@@ -22,7 +22,7 @@
     <div class="page-wrapper">
         <!-- START HEADER-->
         <header class="header">
-            <div class="page-brand bg-teal-300">
+            <div class="page-brand bg-danger">
                 <a class="link" href="index.html">
                     <span class="brand">Serba Sambal
                         {{-- <span class="brand-tip">Maju Jaya</span> --}}
@@ -59,7 +59,7 @@
         </header>
         <!-- END HEADER-->
         <!-- START SIDEBAR-->
-        <nav class="page-sidebar bg-teal" id="sidebar">
+        <nav class="page-sidebar bg-danger" id="sidebar">
             <div id="sidebar-collapse">
                 <div class="admin-block d-flex">
                     <div>
