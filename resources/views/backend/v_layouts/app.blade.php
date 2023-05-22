@@ -105,20 +105,11 @@
                                 class="sidebar-item-icon fa fa-briefcase"></i>
                             <span class="nav-label"> Master Gaji</span></a>
                     </li>
-
                     <li>
-                        <a href="javascript:;" class="text-white"><i class="sidebar-item-icon fa fa-bookmark"></i>
-                            <span class="nav-label">Laporan</span><i class="fa fa-angle-left arrow"></i></a>
-                        <ul class="nav-2-level collapse bg-teal">
-                            <li>
-                                <a href="#" class="text-white"> <i
-                                        class="sidebar-item-icon fa fa-arrow-right"></i>Akun</a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-white"><i
-                                        class="sidebar-item-icon fa fa-arrow-right"></i>Jabatan</a>
-                            </li>
-                        </ul>
+                        <a href="{{ route('master_gaji.index') }}" class="text-white"><i
+                                class="sidebar-item-icon fa fa-angle-left arrow"></i>
+                            <span class="nav-label"> Laporan</span></a>
+                    </li>
                     </li>
                     <li>
                         <a href="{{ route('logout') }}" class="text-white" onclick="event.preventDefault();
