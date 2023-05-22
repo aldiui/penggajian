@@ -69,9 +69,21 @@ class AkunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+ * Show the form for editing the specified resource.
+ *
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
     public function edit($id)
     {
-        //
+        $akun = Akun::findOrFail($id);
+
+        return view('backend.v_akun.edit', [
+            'judul' => "Akun",
+            'sub'   => "Edit Akun",
+            'akun'  => $akun
+        ]);
     }
 
     /**
@@ -83,7 +95,15 @@ class AkunController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'kd_akun' => 'required',
+            'nama_akun' => 'required'
+        ]);
+
+        $akun = Akun::findOrFail($id);
+        $akun->update($data);
+
+        return redirect('/akun');
     }
 
     /**
@@ -94,6 +114,10 @@ class AkunController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $akun = Akun::findOrFail($id);
+        $akun->delete();
+
+        return redirect('/akun');
     }
+
 }

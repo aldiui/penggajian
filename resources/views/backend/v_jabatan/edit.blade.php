@@ -13,10 +13,11 @@
             </div>
         </div>
         <div class="ibox-body">
-            <form action="/jabatan" method="POST">
+            <form action="{{ route('jabatan.update', $jabatan->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <label>Kode Jabatan</label><br>
-                <input type="text" name="kd_jabatan" value="{{old('kd_jabatan')}}"
+                <input type="text" name="kd_jabatan" value="{{ $jabatan->kd_jabatan}}"
                     class="form-control @error('kd_jabatan') is-invalid @enderror" id="">
                 @error('kd_jabatan')
                 <span class="invalid-feedback alert-danger" role="alert">
@@ -26,7 +27,7 @@
                 <p></p>
 
                 <label>Nama Jabatan</label><br>
-                <input type="text" name="nm_jabatan" value="{{old('nm_jabatan')}}"
+                <input type=" text" name="nm_jabatan" value="{{ $jabatan->nm_jabatan}}"
                     class="form-control @error('nm_jabatan') is-invalid @enderror" id="">
                 @error('nm_jabatan')
                 <span class="invalid-feedback alert-danger" role="alert">
@@ -36,7 +37,7 @@
                 <p></p>
 
                 <label>Tunjangan Jabatan</label><br>
-                <input type="text" name="tunjangan_jabatan" value="{{old('tunjangan_jabatan')}}"
+                <input type="text" name="tunjangan_jabatan" value="{{ $jabatan->tunjangan_jabatan}}"
                     class="form-control @error('tunjangan_jabatan') is-invalid @enderror" id="">
                 @error('tunjangan_jabatan')
                 <span class="invalid-feedback alert-danger" role="alert">
@@ -46,7 +47,7 @@
                 <p></p>
 
                 <label>Gaji Pokok</label><br>
-                <input type="text" name="gaji_pokok" value="{{old('gaji_pokok')}}"
+                <input type="text" name="gaji_pokok" value="{{ $jabatan->gaji_pokok}}"
                     class="form-control @error('gaji_pokok') is-invalid @enderror" id="">
                 @error('gaji_pokok')
                 <span class="invalid-feedback alert-danger" role="alert">

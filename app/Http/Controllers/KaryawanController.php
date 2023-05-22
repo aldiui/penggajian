@@ -78,7 +78,15 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $karyawan = Karyawan::findOrFail($id);
+        $jabatan = Jabatan::all();
+
+        return view('backend.v_karyawan.edit', [
+            'judul' => "Karyawan",
+            'sub'   => "Edit Karyawan",
+            'karyawan' => $karyawan,
+            'jabatan' => $jabatan
+        ]);
     }
 
     /**
@@ -90,7 +98,20 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'jabatan_id' => 'required',
+            'nik' => 'required',
+            'nama' => 'required|min:3|max:30',
+            'ttl' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_hp' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        $karyawan = Karyawan::findOrFail($id);
+        $karyawan->update($data);
+
+        return redirect('/karyawan');
     }
 
     /**
@@ -101,6 +122,9 @@ class KaryawanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $karyawan = Karyawan::findOrFail($id);
+        $karyawan->delete();
+
+        return redirect('/karyawan');
     }
 }

@@ -73,7 +73,13 @@ class JabatanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jabatan = Jabatan::findOrFail($id);
+
+        return view('backend.v_jabatan.edit', [
+            'judul' => "Jabatan",
+            'sub'   => "Edit Jabatan",
+            'jabatan' => $jabatan
+        ]);
     }
 
     /**
@@ -85,7 +91,17 @@ class JabatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'kd_jabatan' => 'required',
+            'nm_jabatan' => 'required',
+            'tunjangan_jabatan' => 'required|numeric',
+            'gaji_pokok' => 'required|numeric'
+        ]);
+
+        $jabatan = Jabatan::findOrFail($id);
+        $jabatan->update($data);
+
+        return redirect('/jabatan');
     }
 
     /**
@@ -96,6 +112,9 @@ class JabatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $jabatan = Jabatan::findOrFail($id);
+        $jabatan->delete();
+
+        return redirect('/jabatan');
     }
 }

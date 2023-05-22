@@ -61,7 +61,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view('backend.v_user.edit', [
+            'judul' => "user",
+            'sub'   => "Edit user",
+            'user'  => $user
+        ]);
     }
 
     /**
@@ -73,7 +79,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        return redirect('/user');
     }
 
     /**
@@ -84,6 +98,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect('/user');
     }
 }
