@@ -16,11 +16,12 @@ class CreateAbsensiTable extends Migration
         Schema::create('absensi', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('karyawan_id');
-            $table->string('bulan', 10);
-            $table->string('hadir', 10);
-            $table->string('tidak_hadir', 10);
-            $table->string('izin', 10);
-            $table->string('lembur', 10);
+            $table->integer('bulan');
+            $table->integer('tahun');
+            $table->integer('hadir');
+            $table->integer('tidak_hadir');
+            $table->integer('izin');
+            $table->integer('lembur');
             $table->timestamps();
         });
     }

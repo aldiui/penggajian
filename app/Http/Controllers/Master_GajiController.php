@@ -15,7 +15,7 @@ class Master_GajiController extends Controller
      */
     public function index()
     {
-        $index = Master_Gaji::all();
+        $index = Master_Gaji::all()->sortByDesc('created_at');
         return view('backend.v_master_gaji.index', [
             'judul' => "Master Gaji",
             'sub'   => "Data Master Gaji",
@@ -33,7 +33,7 @@ class Master_GajiController extends Controller
         return view('backend.v_master_gaji.create', [
             'judul' => "Master Gaji",
             'sub'   => "Tambah Master Gaji",
-            'absensi' => Absensi::all()
+            'absensi' => Absensi::all()->sortByDesc('created_at'),
         ]);
     }
 
@@ -46,8 +46,6 @@ class Master_GajiController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nm_karyawan' => 'required',
-            'jabatan' => 'required',
             'absensi_id' => 'required',
             'total_gaji' => 'required'
         ]);
@@ -75,7 +73,14 @@ class Master_GajiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $masterGaji = Master_Gaji::find($id);
+        $absensi = Absensi::all()->sortByDesc('created_at');
+        return view('backend.v_master_gaji.edit', [
+            'judul' => "Master Gaji",
+            'sub'   => "Edit Master Gaji",
+            'masterGaji' => $masterGaji,
+            'absensi' => $absensi,
+        ]);
     }
 
     /**
@@ -87,7 +92,15 @@ class Master_GajiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'absensi_id' => 'required',
+            'total_gaji' => 'required'
+        ]);
+
+        $masterGaji = Master_Gaji::find($id);
+        $masterGaji->update($data);
+
+        return redirect('/master_gaji');
     }
 
     /**
@@ -98,6 +111,9 @@ class Master_GajiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $masterGaji = Master_Gaji::find($id);
+        $masterGaji->delete();
+
+        return redirect('/master_gaji');
     }
 }

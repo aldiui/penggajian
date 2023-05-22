@@ -1,10 +1,6 @@
 @extends('backend.v_layouts.app')
 
 @section('content')
-
-@php
-use App\Helpers\AllHelper;
-@endphp
 <div class="ibox">
     <div class="ibox-head">
         <div class="ibox-title">{{ $sub }}
@@ -32,8 +28,8 @@ use App\Helpers\AllHelper;
                     <td> {{$loop->iteration}} </td>
                     <td> {{$row->kd_jabatan}} </td>
                     <td> {{$row->nm_jabatan}} </td>
-                    <td> {{AllHelper::formatRupiah($row->tunjangan_jabatan)}} </td>
-                    <td> {{AllHelper::formatRupiah($row->gaji_pokok)}} </td>
+                    <td> @formatRupiah($row->tunjangan_jabatan) </td>
+                    <td> @formatRupiah($row->gaji_pokok)</td>
                     <td>
                         <a href="{{ route('jabatan.edit', $row->id) }}" title="Ubah Data">
                             <button class="btn btn-primary btn-sm"><i class="fa fa-edit"> Ubah</i></button>

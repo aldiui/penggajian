@@ -16,9 +16,7 @@ class CreateMasterGajiTable extends Migration
         Schema::create('master_gaji', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('absensi_id');
-            $table->string('nm_karyawan', 50);
-            $table->string('jabatan', 50);
-            $table->string('total_gaji', 10);
+            $table->integer('total_gaji');
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 <div class="col-md-12">
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">Tambah Master Gaji</div>
+            <div class="ibox-title">Edit Master Gaji</div>
             <div class="ibox-tools">
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item">option 1</a>
@@ -12,19 +12,21 @@
             </div>
         </div>
         <div class="ibox-body">
-            <form action="{{ route('master_gaji.store') }}" method="POST">
+            <form action="{{ route('master_gaji.update', $masterGaji->id) }}" method="POST">
                 @csrf
+                @method('PUT')
 
                 <label>Total Absensi</label><br>
                 <select class="form-control @error('absensi') is-invalid @enderror" name="absensi_id" id="absensi_id">
                     <option value="" selected>--Total Absensi--</option>
-                    @foreach($absensi as $absensi)
-                    <option value="{{ $absensi->id }}" data-tidakhadir="{{ $absensi->tidak_hadir }}"
-                        data-izin="{{ $absensi->izin }}" data-lembur="{{ $absensi->lembur }}"
-                        data-jabatan="{{ $absensi->karyawan->jabatan->tunjangan_jabatan }}"
-                        data-pokok="{{ $absensi->karyawan->jabatan->gaji_pokok }}">
-                        {{ $absensi->karyawan->nama }} -
-                        @getNamaBulan($absensi->bulan) {{$absensi->tahun}}
+                    @foreach($absensi as $absen)
+                    <option value="{{ $absen->id }}" data-tidakhadir="{{ $absen->tidak_hadir }}"
+                        data-izin="{{ $absen->izin }}" data-lembur="{{ $absen->lembur }}"
+                        data-jabatan="{{ $absen->karyawan->jabatan->tunjangan_jabatan }}"
+                        data-pokok="{{ $absen->karyawan->jabatan->gaji_pokok }}"
+                        {{ $absen->id == $masterGaji->absensi_id ? 'selected' : '' }}>
+                        {{ $absen->karyawan->nama }} -
+                        @getNamaBulan($absen->bulan) {{$absen->tahun}}
                     </option>
                     @endforeach
                 </select>
@@ -33,7 +35,7 @@
                 <p></p>
 
                 <label>Total Gaji</label><br>
-                <input type="text" name="total_gaji" value="{{ old('total_gaji') }}" id="total_gaji"
+                <input type="text" name="total_gaji" value="{{ $masterGaji->total_gaji }}" id="total_gaji"
                     class="form-control @error('total_gaji') is-invalid @enderror" readonly>
                 @error('total_gaji')
                 <span class="invalid-feedback alert-danger" role="alert">

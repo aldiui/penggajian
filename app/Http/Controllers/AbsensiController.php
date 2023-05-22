@@ -15,7 +15,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $index = Absensi::all();
+        $index = Absensi::all()->sortByDesc('created_at');
         return view('backend.v_absensi.index', [
             'judul' => "Absensi",
             'sub'   => "Data Absensi",
@@ -30,24 +30,50 @@ class AbsensiController extends Controller
      */
     public function create()
     {
+        $bulan = [
+            [ "no" => 1, "nama" => "Januari"],
+            [ "no" => 2, "nama" => "Februari"],
+            [ "no" => 3, "nama" => "Maret"],
+            [ "no" => 4, "nama" => "April"],
+            [ "no" => 5, "nama" => "Mei"],
+            [ "no" => 6, "nama" => "Juni"],
+            [ "no" => 7, "nama" => "Juli"],
+            [ "no" => 8, "nama" => "Agustus"],
+            [ "no" => 9, "nama" => "September"],
+            [ "no" => 10, "nama" => "Oktober"],
+            [ "no" => 11, "nama" => "November"],
+            [ "no" => 12, "nama" => "Desember"],
+        ];
+
+        $tahun = [
+            date("Y"),
+            date("Y") - 1,
+            date("Y") - 2,
+            date("Y") - 3,
+            date("Y") - 4,
+        ];
+
         return view('backend.v_absensi.create', [
             'judul' => "Absensi",
             'sub'   => "Tambah Absensi",
-            'karyawan' => Karyawan::all()
+            'karyawan' => Karyawan::all(),
+            'bulan' => $bulan,
+            'tahun' => $tahun,
         ]);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+         * Store a newly created resource in storage.
+         *
+         * @param  \Illuminate\Http\Request  $request
+         * @return \Illuminate\Http\Response
+         */
     public function store(Request $request)
     {
         $data = $request->validate([
             'karyawan_id' => 'required',
             'bulan' => 'required',
+            'tahun' => 'required',
             'hadir' => 'required',
             'tidak_hadir' => 'required',
             'izin' => 'required',
@@ -77,29 +103,64 @@ class AbsensiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $absensi = Absensi::findOrFail($id);
+        $bulan = [
+            [ "no" => 1, "nama" => "Januari"],
+            [ "no" => 2, "nama" => "Februari"],
+            [ "no" => 3, "nama" => "Maret"],
+            [ "no" => 4, "nama" => "April"],
+            [ "no" => 5, "nama" => "Mei"],
+            [ "no" => 6, "nama" => "Juni"],
+            [ "no" => 7, "nama" => "Juli"],
+            [ "no" => 8, "nama" => "Agustus"],
+            [ "no" => 9, "nama" => "September"],
+            [ "no" => 10, "nama" => "Oktober"],
+            [ "no" => 11, "nama" => "November"],
+            [ "no" => 12, "nama" => "Desember"],
+        ];
+
+        $tahun = [
+            date("Y"),
+            date("Y") - 1,
+            date("Y") - 2,
+            date("Y") - 3,
+            date("Y") - 4,
+        ];
+
+        return view('backend.v_absensi.edit', [
+            'judul' => "Absensi",
+            'sub'   => "Edit Absensi",
+            'absensi' => $absensi,
+            'karyawan' => Karyawan::all(),
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'karyawan_id' => 'required',
+            'bulan' => 'required',
+            'tahun' => 'required',
+            'hadir' => 'required',
+            'tidak_hadir' => 'required',
+            'izin' => 'required',
+            'lembur' => 'required'
+        ]);
+
+        $absensi = Absensi::findOrFail($id);
+        $absensi->update($data);
+
+        return redirect('/absensi');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        $absensi = Absensi::findOrFail($id);
+        $absensi->delete();
+
+        return redirect('/absensi');
     }
 }
