@@ -68,7 +68,7 @@
                     <td>
                         <center>
                             <div class="fs-16 fw-bold uppercase">Serba Sambal</div>
-                            <i>Perumahan PIR 7 Bojongbata Pemalang, Jawa Timur</i>
+                            <i>Perumahan PIR 7 Bojongbata Pemalang, Jawa Tengah</i>
                         </center>
                     </td>
             </table>
