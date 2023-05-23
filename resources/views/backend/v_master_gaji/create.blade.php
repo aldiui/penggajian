@@ -59,12 +59,23 @@ document.getElementById('absensi_id').addEventListener('change', function() {
     var tunjangan = parseFloat(selectedOption.getAttribute('data-jabatan'));
     var pokok = parseFloat(selectedOption.getAttribute('data-pokok'));
 
-    var rincianGaji = "Rincian Gaji:<br>";
-    rincianGaji += "Gaji Pokok: Rp " + pokok + "<br>";
-    rincianGaji += "Tunjangan Jabatan: Rp " + tunjangan + "<br>";
-    rincianGaji += "Lembur: " + lembur + " jam x Rp 10,000<br>";
-    rincianGaji += "Tidak Hadir: " + tidakhadir + " hari x Rp 20,000<br>";
-    rincianGaji += "Izin: " + izin + " hari x Rp 20,000<br>";
+    var lemburTotal = lembur * 10000;
+    var tidakhadirTotal = tidakhadir * 20000;
+    var izinTotal = izin * 20000;
+
+    var rincianGaji = '<table class="table table-bordered">';
+    rincianGaji += '<tr><th colspan="2">Rincian Gaji</th></tr>';
+    rincianGaji += '<tr><td>Gaji Pokok</td><td>Rp ' + pokok + '</td></tr>';
+    rincianGaji += '<tr><td>Tunjangan Jabatan</td><td>Rp ' + tunjangan + '</td></tr>';
+    rincianGaji += '<tr><td>Lembur</td><td>' + lembur + ' jam x Rp 10,000 = Rp ' + lemburTotal +
+        '</td></tr>';
+    rincianGaji += '<tr><td>Tidak Hadir</td><td>' + tidakhadir + ' hari x Rp 20,000 = Rp ' + tidakhadirTotal +
+        '</td></tr>';
+    rincianGaji += '<tr><td>Izin</td><td>' + izin + ' hari x Rp 20,000 = Rp ' + izinTotal + '</td></tr>';
+
+    rincianGaji += '<tr><th>Total Gaji</th><th>Rp ' + (pokok + tunjangan + lemburTotal - tidakhadirTotal -
+        izinTotal) + '</th></tr>';
+    rincianGaji += '</table>';
 
     var totalGaji = tunjangan + pokok - (tidakhadir * 20000) - (izin * 20000) + (lembur * 10000);
 
