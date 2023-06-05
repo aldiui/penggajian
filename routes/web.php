@@ -40,3 +40,4 @@ Route::post('/laporan/cari', 'LaporanController@search')->name('laporan/cari');
 Route::post('/master_gaji/cari', 'Master_GajiController@search')->name('master_gaji/cari');
 Route::post('/absensi/cari', 'AbsensiController@search')->name('absensi/cari');
 Route::get('/generate-pdf/{bulan}/{tahun}', 'LaporanController@generatePdf')->name('generate-pdf');
+Route::get('/slipgaji-pdf/{id}/', 'Master_GajiController@slipGajiPdf')->name('slipgaji-pdf');

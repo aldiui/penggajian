@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Gaji Serba Sambel Bulan @getNamaBulan($bulan) {{ $tahun }}
+    <title>Laporan Gaji Serba Sambel Bulan @getNamaBulan($mastergaji->absensi->bulan) {{ $mastergaji->Absensi->tahun }}
     </title>
 
     <!-- Normalize or reset CSS with your favorite library -->

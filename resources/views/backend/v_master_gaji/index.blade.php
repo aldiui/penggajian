@@ -84,11 +84,9 @@
                                 <i class="fa fa-trash-o "> Hapus</i>
                             </button>
                         </form>
-                        {{-- <form action="{{ route('slipgaji-pdf') }}" method="GET" style="display: inline;">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $row->id }}">
-                            <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-print"> Cetak</i></button>
-                        </form> --}}
+                        <a href="{{ route('slipgaji-pdf', $row->id) }}" title="Ubah Data">
+                            <button class="btn btn-info btn-sm"><i class="fa fa-print"> Cetak</i></button>
+                        </a>
                     </td>
                 </tr>
             </tbody>

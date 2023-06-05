@@ -83,7 +83,7 @@ class AbsensiController extends Controller
             date("Y") - 3,
             date("Y") - 4,
         ];
-       $index = Absensi::where('bulan', $bulan1)
+        $index = Absensi::where('bulan', $bulan1)
         ->where('tahun', $tahun1)
         ->orderByDesc('created_at')
         ->get();

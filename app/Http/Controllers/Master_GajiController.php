@@ -181,15 +181,12 @@ class Master_GajiController extends Controller
     }
 
 
-    public function cetak(Request $request)
+    public function slipGajiPdf($id)
     {
-        $id = $request->input('id');
         $masterGaji = Master_Gaji::find($id);
-        
         $pdf = PDF::loadView('backend.v_master_gaji.show', [
             'mastergaji' => $masterGaji,
         ]);
-        
         $options = [
             'margin_top' => 20,
             'margin_right' => 20,
@@ -200,7 +197,6 @@ class Master_GajiController extends Controller
         $namaFile = 'slip_gaji.pdf';
         $pdf->setPaper('A4', 'portrait');
         $pdfContent = $pdf->output();
-    
         return response($pdfContent)
             ->header('Content-Type', 'application/pdf')
             ->header('Content-Disposition', 'inline; filename="' . $namaFile . '"')
