@@ -32,12 +32,15 @@ class LaporanController extends Controller
             date("Y") - 3,
             date("Y") - 4,
         ];
-
+        $bulan1 = date('m');
+        $tahun1 = date('Y');
+        $pdfUrl = route('generate-pdf', ['bulan' => $bulan1, 'tahun' => $tahun1]);
         return view('backend.v_laporan.index', [
             'judul' => "Laporan",
             'sub'   => "Data Laporan",
             'bulan' => $bulan,
             'tahun' => $tahun,
+            'pdfUrl' => $pdfUrl,
         ]);
     }
     public function generatePDF($bulan, $tahun)

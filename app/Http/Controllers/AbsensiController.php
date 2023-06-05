@@ -37,12 +37,12 @@ class AbsensiController extends Controller
             date("Y") - 3,
             date("Y") - 4,
         ];
-        $bulan1 = date('Y');
-        $tahun1 = date('m');
-       $index = Absensi::where('bulan', $bulan1)
-    ->where('tahun', $tahun1)
-    ->orderByDesc('created_at')
-    ->get();
+        $bulan1 = date('m');
+        $tahun1 = date('Y');
+        $index = Absensi::where('bulan', $bulan1)
+            ->where('tahun', $tahun1)
+            ->orderByDesc('created_at')
+            ->get();
         return view('backend.v_absensi.index', [
             'judul' => "Absensi",
             'sub'   => "Data Absensi",

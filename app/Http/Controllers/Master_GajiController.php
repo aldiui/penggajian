@@ -38,8 +38,8 @@ class Master_GajiController extends Controller
             date("Y") - 3,
             date("Y") - 4,
         ];
-        $bulan1 = date('Y');
-        $tahun1 = date('m');
+        $bulan1 = date('m');
+        $tahun1 = date('Y');
         $index = Master_Gaji::getAbsensi($bulan1, $tahun1);
         return view('backend.v_master_gaji.index', [
             'judul' => "Master Gaji",
