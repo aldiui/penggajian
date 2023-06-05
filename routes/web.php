@@ -36,4 +36,7 @@ Route::resource('/absensi', 'AbsensiController');
 Route::resource('/master_gaji', 'Master_GajiController');
 
 Route::resource('/laporan', 'LaporanController');
-Route::post('/generate-pdf', 'LaporanController@generatePDF')->name('generate-pdf');
+Route::post('/laporan/cari', 'LaporanController@search')->name('laporan/cari');
+Route::post('/master_gaji/cari', 'Master_GajiController@search')->name('master_gaji/cari');
+Route::post('/absensi/cari', 'AbsensiController@search')->name('absensi/cari');
+Route::get('/generate-pdf/{bulan}/{tahun}', 'LaporanController@generatePdf')->name('generate-pdf');

@@ -4,16 +4,9 @@
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">Laporan Gaji</div>
-            <div class="ibox-tools">
-
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item">option 1</a>
-                    <a class="dropdown-item">option 2</a>
-                </div>
-            </div>
         </div>
         <div class="ibox-body">
-            <form action="{{ route('generate-pdf') }}" method="POST">
+            <form action="{{ route('laporan/cari') }}" method="POST">
                 @csrf
 
                 <label>Bulan</label><br>
@@ -48,10 +41,12 @@
             </form>
 
             <!-- Tampilkan PDF di sini -->
-            @if(isset($pdfUrl))
-            <embed src="{{ $pdfUrl }}" type="application/pdf" width="100%" height="600px" />
-            @endif
         </div>
+    </div>
+    <div class="ibox ibox-body">
+        @if(isset($pdfUrl))
+        <embed src="{{ $pdfUrl }}" type="application/pdf" width="100%" height="600px" />
+        @endif
     </div>
 </div>
 @endsection

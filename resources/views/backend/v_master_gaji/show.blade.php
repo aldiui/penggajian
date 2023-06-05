@@ -75,43 +75,11 @@
             <hr>
             <br>
             <center>
-                <u class="fw-bold uppercase">Laporan Gaji Serba Sambel Bulan @getNamaBulan($bulan) {{ $tahun }}</u>
+                <u class="fw-bold uppercase">Slip Gaji Serba Sambel</u>
             </center>
             <br>
             <table width="100%" border="1" cellpadding="1.5" cellspacing="0">
-                <thead align="center">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Jabatan</th>
-                        <th>Total Gaji</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                    $totalGaji = 0;
-                    @endphp
-                    @foreach ($absensi as $data)
-                    @php
-                    $tidakHadir = $data->tidak_hadir;
-                    $izin = $data->izin;
-                    $lembur = $data->lembur;
-                    $tunjangan = $data->karyawan->jabatan->tunjangan_jabatan;
-                    $gajiPokok = $data->karyawan->jabatan->gaji_pokok;
-                    $totalGaji = $tunjangan + $gajiPokok - ($tidakHadir * 20000) - ($izin * 20000) + ($lembur * 10000);
-                    @endphp
-                    <tr>
-                        <td align="center">{{$loop->iteration}}</td>
-                        <td>{{ $data->karyawan->nama }}</td>
-                        <td>{{ $data->karyawan->jabatan->nm_jabatan }}</td>
-                        <td align="right">@formatRupiah($totalGaji)</td>
-                    </tr>
-                    @endforeach
-                    <tr>
-                        <th colspan="3" class="total">Total Gaji Bulan Ini:</th>
-                        <th align="right">@formatRupiah($totalGaji)</th>
-                    </tr>
-                </tbody>
+
             </table>
             <br>
         </article>

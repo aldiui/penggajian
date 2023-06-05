@@ -4,6 +4,47 @@
 
 <div class="ibox">
     <div class="ibox-head">
+        <div class="ibox-title">Cari {{ $sub }}
+        </div>
+    </div>
+    <div class="ibox-body">
+        <form action="{{ route('absensi/cari') }}" method="POST">
+            @csrf
+    
+            <label>Bulan</label><br>
+            <select class="form-control @error('bulan') is-invalid @enderror" name="bulan">
+                <option value="" selected>--Pilih Bulan--</option>
+                @foreach($bulan as $b)
+                <option value="{{ $b['no'] }}"> {{ $b['nama'] }} </option>
+                @endforeach
+            </select>
+            @error('bulan')
+            <span class="invalid-feedback alert-danger" role="alert">
+                {{ $message }}
+            </span>
+            @enderror
+            <p></p>
+    
+            <label>Tahun</label><br>
+            <select class="form-control @error('tahun') is-invalid @enderror" name="tahun">
+                <option value="" selected>--Pilih Tahun--</option>
+                @foreach($tahun as $t)
+                <option value="{{ $t }}"> {{ $t }} </option>
+                @endforeach
+            </select>
+            @error('tahun')
+            <span class="invalid-feedback alert-danger" role="alert">
+                {{ $message }}
+            </span>
+            @enderror
+            <p></p>
+    
+            <button class="btn btn-info" type="submit">Cari Data</button>
+        </form>
+    </div>
+</div>
+<div class="ibox">
+    <div class="ibox-head">
         <div class="ibox-title">{{ $sub }}
         </div>
     </div>

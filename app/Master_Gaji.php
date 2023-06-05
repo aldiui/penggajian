@@ -14,4 +14,13 @@ class Master_Gaji extends Model
     {
         return $this->belongsTo(Absensi::class);
     }
+
+    public static function getAbsensi($bulan, $tahun)
+    {
+        return Master_Gaji::join('absensi', 'absensi.id', '=', 'master_gaji.absensi_id')
+            ->where('absensi.bulan', $bulan)
+            ->where('absensi.tahun', $tahun)
+            ->orderByDesc('master_gaji.created_at')
+            ->get();
+    }
 }

@@ -15,11 +15,40 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $index = Absensi::all()->sortByDesc('created_at');
+        $bulan = [
+            [ "no" => 1, "nama" => "Januari"],
+            [ "no" => 2, "nama" => "Februari"],
+            [ "no" => 3, "nama" => "Maret"],
+            [ "no" => 4, "nama" => "April"],
+            [ "no" => 5, "nama" => "Mei"],
+            [ "no" => 6, "nama" => "Juni"],
+            [ "no" => 7, "nama" => "Juli"],
+            [ "no" => 8, "nama" => "Agustus"],
+            [ "no" => 9, "nama" => "September"],
+            [ "no" => 10, "nama" => "Oktober"],
+            [ "no" => 11, "nama" => "November"],
+            [ "no" => 12, "nama" => "Desember"],
+        ];
+
+        $tahun = [
+            date("Y"),
+            date("Y") - 1,
+            date("Y") - 2,
+            date("Y") - 3,
+            date("Y") - 4,
+        ];
+        $bulan1 = date('Y');
+        $tahun1 = date('m');
+       $index = Absensi::where('bulan', $bulan1)
+    ->where('tahun', $tahun1)
+    ->orderByDesc('created_at')
+    ->get();
         return view('backend.v_absensi.index', [
             'judul' => "Absensi",
             'sub'   => "Data Absensi",
-            'index' => $index
+            'index' => $index,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
         ]);
     }
 
@@ -28,6 +57,45 @@ class AbsensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function search(Request $request)
+    {
+        $bulan1 = $request->input('bulan');
+        $tahun1 = $request->input('tahun');
+        $bulan = [
+            [ "no" => 1, "nama" => "Januari"],
+            [ "no" => 2, "nama" => "Februari"],
+            [ "no" => 3, "nama" => "Maret"],
+            [ "no" => 4, "nama" => "April"],
+            [ "no" => 5, "nama" => "Mei"],
+            [ "no" => 6, "nama" => "Juni"],
+            [ "no" => 7, "nama" => "Juli"],
+            [ "no" => 8, "nama" => "Agustus"],
+            [ "no" => 9, "nama" => "September"],
+            [ "no" => 10, "nama" => "Oktober"],
+            [ "no" => 11, "nama" => "November"],
+            [ "no" => 12, "nama" => "Desember"],
+        ];
+
+        $tahun = [
+            date("Y"),
+            date("Y") - 1,
+            date("Y") - 2,
+            date("Y") - 3,
+            date("Y") - 4,
+        ];
+       $index = Absensi::where('bulan', $bulan1)
+        ->where('tahun', $tahun1)
+        ->orderByDesc('created_at')
+        ->get();
+        return view('backend.v_absensi.index', [
+            'judul' => "Absensi",
+            'sub'   => "Data Absensi",
+            'index' => $index,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+        ]);
+    }
+    
     public function create()
     {
         $bulan = [
