@@ -72,10 +72,10 @@
                     <td> {{$row->absensi->hadir}} </td>
                     <td> @formatRupiah($row->total_gaji) </td>
                     <td>
-                        <a href="{{ route('master_gaji.edit', $row->id) }}" title="Ubah Data">
+                        <a href="{{ route('master_gaji.edit', $row->id_gaji) }}" title="Ubah Data">
                             <button class="btn btn-primary btn-sm"><i class="fa fa-edit"> Ubah</i></button>
                         </a>
-                        <form action="{{ route('master_gaji.destroy', $row->id) }}" method="POST"
+                        <form action="{{ route('master_gaji.destroy', $row->id_gaji) }}" method="POST"
                             style="display: inline;">
                             @csrf
                             @method('DELETE')
@@ -84,7 +84,7 @@
                                 <i class="fa fa-trash-o "> Hapus</i>
                             </button>
                         </form>
-                        <a href="{{ route('slipgaji-pdf', $row->id) }}" title="Ubah Data">
+                        <a href="{{ route('slipgaji-pdf', $row->id_gaji) }}" title="Ubah Data">
                             <button class="btn btn-info btn-sm"><i class="fa fa-print"> Cetak</i></button>
                         </a>
                     </td>

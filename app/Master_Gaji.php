@@ -17,10 +17,19 @@ class Master_Gaji extends Model
 
     public static function getAbsensi($bulan, $tahun)
     {
-        return Master_Gaji::join('absensi', 'absensi.id', '=', 'master_gaji.absensi_id')
+        return Master_Gaji::select('master_gaji.*', 'master_gaji.id as id_gaji')
+            ->join('absensi', 'absensi.id', '=', 'master_gaji.absensi_id')
             ->where('absensi.bulan', $bulan)
             ->where('absensi.tahun', $tahun)
             ->orderByDesc('master_gaji.created_at')
             ->get();
+    }
+    
+
+    public static function getAbsensiRow($id)
+    {
+        return Master_Gaji::join('absensi', 'absensi.id', '=', 'master_gaji.absensi_id')
+            ->where('master_gaji.id', $id)
+            ->first();
     }
 }

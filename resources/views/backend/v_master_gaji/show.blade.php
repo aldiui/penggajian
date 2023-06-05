@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Gaji Serba Sambel Bulan @getNamaBulan($mastergaji->absensi->bulan) {{ $mastergaji->Absensi->tahun }}
+    <title>Laporan Slip Gaji Serba Sambel Bulan @getNamaBulan($mastergaji->absensi->bulan) {{ $mastergaji->absensi->tahun }}
     </title>
 
     <!-- Normalize or reset CSS with your favorite library -->
@@ -75,11 +75,83 @@
             <hr>
             <br>
             <center>
-                <u class="fw-bold uppercase">Slip Gaji Serba Sambel</u>
+                <u class="fw-bold uppercase">Slip Gaji Serba Sambel @getNamaBulan($mastergaji->absensi->bulan) {{ $mastergaji->absensi->tahun }}</u>
             </center>
             <br>
+            <table width="100%" border="0" cellpadding="1.5" cellspacing="0">
+                @php
+                $tidakHadir = ($mastergaji->absensi->tidak_hadir) * 20000;
+                $izin = ($mastergaji->absensi->izin) * 20000;
+                $lembur = ($mastergaji->absensi->lembur) * 10000;
+                $gajiPokok = $mastergaji->absensi->karyawan->jabatan->gaji_pokok;
+                $tunjangan = $mastergaji->absensi->karyawan->jabatan->tunjangan_jabatan;
+                $totalGaji = $tunjangan + $gajiPokok - $tidakHadir  - $izin + $lembur;
+                $totalPemasukan = $tunjangan + $gajiPokok + $lembur;
+                $totalPengeluaran = $tidakHadir  + $izin;
+                @endphp
+                <tr>
+                    <td width="40%">Nama </td>
+                    <td width="2%">:</td>
+                    <td>{{ $mastergaji->absensi->karyawan->nama}}</td>
+                </tr>
+                <tr>
+                    <td width="40%">Jabatan </td>
+                    <td width="2%">:</td>
+                    <td>{{ $mastergaji->absensi->karyawan->jabatan->nm_jabatan}}</td>
+                </tr>
+            </table>
+            <br>
+            <br>
             <table width="100%" border="1" cellpadding="1.5" cellspacing="0">
-
+                <tr>
+                    <td width="50%" colspan="2">Penerimaan</td>
+                    <td width="50%" colspan="2">Denda Absen</td>
+                </tr>
+                <tr>
+                    <td width="25%">Gaji Pokok</td>
+                    <td width="25%">@formatRupiah($gajiPokok)</td>
+                    <td width="25%">Tidak Hadir</td>
+                    <td width="25%">@formatRupiah($tidakHadir)</td>
+                </tr>
+                <tr>
+                    <td width="25%">Tunjangan</td>
+                    <td width="25%">@formatRupiah($tunjangan)</td>
+                    <td width="25%">Izin</td>
+                    <td width="25%">@formatRupiah($izin)</td>
+                </tr>
+                <tr>
+                    <td width="25%">Lembur</td>
+                    <td width="25%">@formatRupiah($lembur)</td>
+                    <td width="25%"></td>
+                    <td width="25%"></td>
+                </tr>
+                <tr>
+                    <td width="25%">Total Pemasukan</td>
+                    <td width="25%">@formatRupiah($totalPemasukan)</td>
+                    <td width="25%">Total Pengurangan</td>
+                    <td width="25%">@formatRupiah($totalPengeluaran)</td>
+                </tr>
+                <tr>
+                    <td width="50%" colspan="2">Total Penerimaan (Pemasukan - Pengurangan)</td>
+                    <td width="50%" colspan="2">@formatRupiah($totalGaji)</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <table width="100%" border="0" cellpadding="1.5" cellspacing="0">
+                <tr>
+                    <td width="75%" colspan="3"></td>
+                    <td width="25%">
+                        Diterima Oleh
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div>{{ $mastergaji->absensi->karyawan->nama}}</div>
+                        <div>Penerima</div>
+                    </td>
+                </tr>
             </table>
             <br>
         </article>
