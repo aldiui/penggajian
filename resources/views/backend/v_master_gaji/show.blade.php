@@ -104,8 +104,8 @@
             <br>
             <table width="100%" border="1" cellpadding="1.5" cellspacing="0">
                 <tr>
-                    <td width="50%" colspan="2">Penerimaan</td>
-                    <td width="50%" colspan="2">Denda Absen</td>
+                    <td width="50%" colspan="2"><b>Penerimaan</b></td>
+                    <td width="50%" colspan="2"><b>Denda Absen</b></td>
                 </tr>
                 <tr>
                     <td width="25%">Gaji Pokok</td>
@@ -126,14 +126,14 @@
                     <td width="25%"></td>
                 </tr>
                 <tr>
-                    <td width="25%">Total Pemasukan</td>
-                    <td width="25%">@formatRupiah($totalPemasukan)</td>
-                    <td width="25%">Total Pengurangan</td>
-                    <td width="25%">@formatRupiah($totalPengeluaran)</td>
+                    <td width="25%"><b>Total Pemasukan</b></td>
+                    <td width="25%"><b>@formatRupiah($totalPemasukan)</b></td>
+                    <td width="25%"><b>Total Pengurangan</b></td>
+                    <td width="25%"><b>@formatRupiah($totalPengeluaran)</b></td>
                 </tr>
                 <tr>
-                    <td width="50%" colspan="2">Total Penerimaan (Pemasukan - Pengurangan)</td>
-                    <td width="50%" colspan="2">@formatRupiah($totalGaji)</td>
+                    <td width="50%" colspan="2"><b>Total Penerimaan (Pemasukan - Pengurangan)</b></td>
+                    <td width="50%" colspan="2"><b>@formatRupiah($totalGaji)</b></td>
                 </tr>
             </table>
             <br>
@@ -149,7 +149,7 @@
                         <br>
                         <br>
                         <div>{{ $mastergaji->absensi->karyawan->nama}}</div>
-                        <div>Penerima</div>
+                        <b>Penerima</b>
                     </td>
                 </tr>
             </table>
